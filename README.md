@@ -1,4 +1,4 @@
-# GROUP-NAME - lab NUMBER - variant NUMBER
+# GROUP-NAME - lab #1 - variant NUMBER
 
 This is an example project which demonstrates project structure and necessary
 CI checks. It is not the best structure for real-world projects, but good
@@ -16,10 +16,12 @@ enough for educational purposes.
 
 ## Contribution
 
-- Aleksandr Penskoi (EMAIL) -- all work.
+- Zhan,Peng (zpeng@hdu.edu.cn) -- all work.
 
 ## Changelog
 
+- 30.03.2022 -3
+  - upload my code to github and test the github workflow.
 - 29.03.2022 - 2
   - Add test coverage.
 - 29.03.2022 - 1
