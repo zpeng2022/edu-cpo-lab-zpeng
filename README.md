@@ -1,18 +1,16 @@
 # slay_the_dragon - lab #1 - variant 7
 
-This is an example project which demonstrates project structure and necessary
-CI checks. It is not the best structure for real-world projects, but good
-enough for educational purposes.
+This is an example project which demonstrates dic structure and necessary
 
 ## Project structure
 
 - `DicHashMap.py` -- implementation of `DicHashMap` class with required features
 - `SelfHashMap.py` -- implementation of `SelfHashMap` class with basic hash map features 
-- `foo_test.py` -- unit and PBT tests for `Foo`.
+- `TestDicHashMap.py` -- unit and PBT tests for `DicHashMap`.
 
 ## Features
 
-- PBT: `test_add_commutative`
+- PBT: `test_add`
 
 ## Contribution
 
@@ -21,6 +19,8 @@ enough for educational purposes.
 
 ## Changelog
 
+- 13.04.2022 - 6
+  - add TestDicHashMap.py and update the README
 - 13.04.2022 - 5
   - add DicHashMap.py and SelfHashMap.py files
 - 11.04.2022 -4
@@ -36,4 +36,5 @@ enough for educational purposes.
 
 ## Design notes
 
-- ...
+- DicHashMap and SelfHashMap
+- HashMap is below the dic   
