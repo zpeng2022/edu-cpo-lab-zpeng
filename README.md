@@ -6,8 +6,8 @@ enough for educational purposes.
 
 ## Project structure
 
-- `foo.py` -- implementation of `Foo` class with `hello` and `add` features.
-   Stateless.
+- `DicHashMap.py` -- implementation of `DicHashMap` class with required features
+- `SelfHashMap.py` -- implementation of `SelfHashMap` class with basic hash map features 
 - `foo_test.py` -- unit and PBT tests for `Foo`.
 
 ## Features
@@ -21,6 +21,8 @@ enough for educational purposes.
 
 ## Changelog
 
+- 13.04.2022 - 5
+  - add DicHashMap.py and SelfHashMap.py files
 - 11.04.2022 -4
   - update team member's information and group's information.
 - 30.03.2022 -3
