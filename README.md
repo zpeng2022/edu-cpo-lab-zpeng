@@ -1,4 +1,4 @@
-# GROUP-NAME - lab #1 - variant NUMBER
+# slay_the_dragon - lab #1 - variant 7
 
 This is an example project which demonstrates project structure and necessary
 CI checks. It is not the best structure for real-world projects, but good
@@ -16,10 +16,13 @@ enough for educational purposes.
 
 ## Contribution
 
-- Zhan,Peng (zpeng@hdu.edu.cn) -- all work.
+- Zhan,Peng (zpeng@hdu.edu.cn) -- write the main class part.
+- Zhong,ZhuZhou(212320020@hdu.edu.cn) -- write the test part.
 
 ## Changelog
 
+- 11.04.2022 -4
+  - update team member's information and group's information.
 - 30.03.2022 -3
   - upload my code to github and test the github workflow.
 - 29.03.2022 - 2
