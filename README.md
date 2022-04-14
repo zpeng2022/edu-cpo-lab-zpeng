@@ -5,9 +5,9 @@ This is an example project which demonstrates dic structure and necessary
 ## Project structure
 
 - `DicHashMap.py` -- implementation of `DicHashMap` class with
-required features
+- required features
 - `SelfHashMap.py` -- implementation of `SelfHashMap` class with
-basic hash map features
+- basic hash map features
 - `TestDicHashMap.py` -- unit and PBT tests for `DicHashMap`
 
 ## Features

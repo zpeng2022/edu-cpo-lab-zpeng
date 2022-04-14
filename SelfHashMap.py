@@ -128,7 +128,8 @@ class SelfHashMap:
     def reset_a_bucket(self):
         # when the nodes in a bucket is to big
         # we need to resize buckets
-        # and change the position of bucket in buckets according to their hash_value
+        # and change the position of bucket
+        # in buckets according to their hash_value
         old_capacity = self.capacity
         resize_headers = [LinkedList() for _ in range(old_capacity * 2)]
         self.capacity = self.capacity * 2
@@ -137,7 +138,8 @@ class SelfHashMap:
             nodes = linked_list.get_a_list()
             for u in nodes:
                 # recalculate the hash_key
-                # and hash_key of each node is changing due to the increase of capacity
+                # and hash_key of each node
+                # is changing due to the increase of capacity
                 hash_key = self.get_hash_key(u.key)
                 head = resize_headers[hash_key]
                 head.append_node(u)
@@ -152,6 +154,3 @@ class SelfHashMap:
         linked_list.delete_node(node)
         self.size -= 1
         return True
-
-
-
