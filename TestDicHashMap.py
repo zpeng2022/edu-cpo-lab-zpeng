@@ -3,15 +3,16 @@ import unittest
 from hypothesis import given
 import hypothesis.strategies as st
 
-from DicHashMap import *
+from DicHashMap import Dic 
 
 
-class MyTestCase(unittest.TestCase):
-    def test_add(self):
+class TestDicHashMap(unittest.TestCase):
+   
+    @given(st.integers(), st.integers())
+    def test_add(self, a, b):
         dic = Dic()
-        self.assertEqual(dic.to_list(), [])
-        dic.add(1, 2)
-        self.assertEqual(dic.to_list(), [(1, 2)])
+        dic.add(a, b)
+        self.assertEqual(dic.to_list(), [(a, b)])
 
     def test_set(self):
         dic = Dic()
