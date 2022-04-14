@@ -3,11 +3,11 @@ import unittest
 from hypothesis import given
 import hypothesis.strategies as st
 
-from DicHashMap import Dic 
+from DicHashMap import Dic
 
 
 class TestDicHashMap(unittest.TestCase):
-   
+
     @given(st.integers(), st.integers())
     def test_add(self, a, b):
         dic = Dic()
@@ -108,7 +108,7 @@ class TestDicHashMap(unittest.TestCase):
         tem_dic = Dic()
         tem_dic.from_list(x)
         dic = Dic()
-        self.assertEqual(dic.concat((1, 2), (3, 4)).to_list(), [(1, 2), (3, 4)])
+        self.assertEqual(dic.concat(None, (3, 4)).to_list(), [(3, 4)])
         self.assertEqual(dic.concat((1, 2), None).to_list(), [(1, 2)])
         self.assertEqual(dic.concat(None, None).to_list(), [])
         self.assertEqual(dic.concat(tem_dic, None).to_list(), x)
