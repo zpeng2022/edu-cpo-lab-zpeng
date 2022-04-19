@@ -9,10 +9,17 @@ This is an example project which demonstrates dic structure and necessary
 - `SelfHashMap.py` -- implementation of `SelfHashMap` class with
 - basic hash map features
 - `TestDicHashMap.py` -- unit and PBT tests for `DicHashMap`
+- `test_DicHashMap.py` -- tests for dicHashMap
 
 ## Features
 
 - PBT: `test_add`
+- PBT: `test_set`
+- PBT: `test_get`
+- PBT: `test_change`
+- PBT: `test_remove`
+- PBT: `test_size`
+- PBT: `test_is_member_for_key`
 
 ## Contribution
 
@@ -21,6 +28,10 @@ This is an example project which demonstrates dic structure and necessary
 
 ## Changelog
 
+- 19.03.2022 - 8
+  - add tests for different type(None, str, float, text)
+  - add more PBT tests
+  - explain the difference between `SelfHashMap` and `DicHashMap` in Design note
 - 14.04.2022 - 7
   - delete TestDicHashMap.py and add test_DicHashMap.py
   - update README.md and description
@@ -42,7 +53,10 @@ This is an example project which demonstrates dic structure and necessary
 ## Design notes
 
 - DicHashMap and SelfHashMap
-- HashMap is below the dic
+  - SelfHashMap is a hash map data structure supports dicHashMap 
+  - dicHashMap is a dic 
+  - We want to make DicHashMap clear and simple, so we split the
+  - implementation into two parts
 - Advantages of unit testing:
   - it help us write better code
   - it help us catch bugs earlier

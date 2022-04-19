@@ -67,11 +67,11 @@ class Dic(object):
 
     # is member
     def is_member(self, key, value):
-        val = self.__hashmap.get_from_hashmap(key)
+        val = self.__hashmap.get_from_hashmap_with_node(key)
         return True if val is not None else False
 
     def is_member_for_key(self, key):
-        val = self.__hashmap.get_from_hashmap(key)
+        val = self.__hashmap.get_from_hashmap_with_node(key)
         return True if val is not None else False
 
     # reverse

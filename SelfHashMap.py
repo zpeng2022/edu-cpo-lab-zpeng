@@ -1,5 +1,5 @@
 import random
-
+import math
 
 class LinkedNode:
     def __init__(self, key, val, predecessor=None, successor=None):
@@ -62,10 +62,14 @@ class LinkedList:
     def get_node_by_key(self, key):
         # find the node with some key in the list
         # O(n) or O(self.size)
+        c = (type(key) == int or type(key) == float) and math.isnan(key)
         cur_node = self.head.successor
         while cur_node != self.tail:
-            if cur_node.key == key:
-                return cur_node
+            if type(cur_node.key) == type(key):
+                if c is True and math.isnan(cur_node.key):
+                    return cur_node
+                elif cur_node.key == key:
+                    return cur_node
             cur_node = cur_node.successor
         return None
 
@@ -107,7 +111,10 @@ class SelfHashMap:
         hash_key = self.get_hash_key(key)
         linked_list = self.array_node[hash_key]
         node = linked_list.get_node_by_key(key)
-        return node.val if node is not None else None
+        if node is not None:
+            return node.val
+        else:
+            return None
 
     def get_from_hashmap_with_node(self, key):
         hash_key = self.get_hash_key(key)

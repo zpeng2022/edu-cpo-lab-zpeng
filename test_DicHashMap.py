@@ -1,5 +1,5 @@
 import unittest
-
+import math
 from hypothesis import given
 import hypothesis.strategies as st
 
@@ -14,17 +14,100 @@ class TestDicHashMap(unittest.TestCase):
         dic.add(a, b)
         self.assertEqual(dic.to_list(), [(a, b)])
 
-    def test_set(self):
+    @given(st.binary(), st.binary())
+    def test_add(self, a, b):
+        dic = Dic()
+        dic.add(a, b)
+        self.assertEqual(dic.to_list(), [(a, b)])
+
+    @given(st.text(), st.text())
+    def test_add(self, a, b):
+        dic = Dic()
+        dic.add(a, b)
+        self.assertEqual(dic.to_list(), [(a, b)])
+
+    @given(st.none(), st.none())
+    def test_add(self, a, b):
+        dic = Dic()
+        dic.add(a, b)
+        self.assertEqual(dic.to_list(), [])
+
+    @given(st.floats(), st.floats())
+    def test_add(self, a, b):
+        dic = Dic()
+        dic.add(a, b)
+        self.assertEqual(dic.to_list(), [(a, b)])
+
+    def test_add(self):
+        dic = Dic()
+        a = None
+        b = 1.2
+        dic.add(a, b)
+        self.assertEqual(dic.to_list(), [(a, b)])
+
+    @given(st.integers(), st.integers())
+    def test_set(self, a, b):
         dic = Dic()
         self.assertEqual(dic.to_list(), [])
-        dic.add(1, 2)
-        self.assertEqual(dic.to_list(), [(1, 2)])
+        dic.add(a, b)
+        self.assertEqual(dic.to_list(), [(a, b)])
+
+    @given(st.floats(), st.floats())
+    def test_get(self, a, b):
+        dic = Dic()
+        dic.set(a, b)
+        if math.isnan(b):
+            self.assertEqual(math.isnan(dic.get(a)), True)
+        else:
+            self.assertEqual(dic.get(a), b)
+
+    @given(st.integers(), st.integers())
+    def test_get(self, a, b):
+        dic = Dic()
+        dic.set(a, b)
+        if math.isnan(b):
+            self.assertEqual(math.isnan(dic.get(a)), True)
+        else:
+            self.assertEqual(dic.get(a), b)
 
     def test_get(self):
         dic = Dic()
-        self.assertEqual(dic.get(1), None)
-        dic.set(1, 2)
-        self.assertEqual(dic.get(1), 2)
+        a = None
+        b = 1.3
+        dic.set(a, b)
+        self.assertEqual(dic.get(a), b)
+        c = float("nan")
+        d = 1.2
+        dic.set(c, d)
+        self.assertEqual(dic.get(c), d)
+        e = float("nan")
+        f = float("nan")
+        dic.set(e, f)
+        self.assertEqual(math.isnan(dic.get(e)), True)
+        g = "zpeng"
+        h = "cpo"
+        dic.set(g, h)
+        self.assertEqual(dic.get(g), h)
+
+    @given(st.floats(), st.floats(), st.floats())
+    def test_change(self, a, b, c):
+        dic = Dic()
+        dic.set(a, b)
+        dic.change(a, c)
+        if math.isnan(c):
+            self.assertEqual(math.isnan(dic.get(a)), True)
+        else:
+            self.assertEqual(dic.get(a), c)
+
+    @given(st.integers(), st.integers(), st.integers())
+    def test_change(self, a, b, c):
+        dic = Dic()
+        dic.set(a, b)
+        dic.change(a, c)
+        if math.isnan(c):
+            self.assertEqual(math.isnan(dic.get(a)), True)
+        else:
+            self.assertEqual(dic.get(a), c)
 
     def test_change(self):
         dic = Dic()
@@ -32,11 +115,12 @@ class TestDicHashMap(unittest.TestCase):
         dic.change(1, 3)
         self.assertEqual(dic.get(1), 3)
 
-    def test_remove(self):
+    @given(st.integers(), st.integers())
+    def test_remove(self, a, b):
         dic = Dic()
-        self.assertEqual(dic.remove(1), False)
-        dic.set(1, 3)
-        self.assertEqual(dic.remove(1), True)
+        self.assertEqual(dic.remove(a), False)
+        dic.set(a, b)
+        self.assertEqual(dic.remove(a), True)
 
     def test_size(self):
         self.assertEqual(Dic().size(), 0)
@@ -48,6 +132,34 @@ class TestDicHashMap(unittest.TestCase):
         dic.set(2, 3)
         dic.set(3, 4)
         self.assertEqual(dic.size(), 3)
+
+    @given(st.dictionaries(st.integers(), st.integers()))
+    def test_size(self, a):
+        c = list(a.items())
+        dic = Dic()
+        dic.from_list(c)
+        self.assertEqual(dic.size(), len(a))
+
+    @given(st.dictionaries(st.floats(), st.floats()))
+    def test_size(self, a):
+        c = list(a.items())
+        dic = Dic()
+        dic.from_list(c)
+        self.assertEqual(dic.size(), len(a))
+
+    @given(st.dictionaries(st.text(), st.text()))
+    def test_size(self, a):
+        c = list(a.items())
+        dic = Dic()
+        dic.from_list(c)
+        self.assertEqual(dic.size(), len(a))
+
+    @given(st.integers(), st.integers())
+    def test_is_member_for_key(self, a, b):
+        dic = Dic()
+        dic.set(a, b)
+        self.assertEqual(dic.is_member_for_key(a), True)
+        self.assertEqual(dic.is_member_for_key(b), False)
 
     def test_is_member_for_key(self):
         dic = Dic()
