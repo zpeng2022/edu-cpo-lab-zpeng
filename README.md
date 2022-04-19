@@ -53,8 +53,8 @@ This is an example project which demonstrates dic structure and necessary
 ## Design notes
 
 - DicHashMap and SelfHashMap
-  - SelfHashMap is a hash map data structure supports dicHashMap 
-  - dicHashMap is a dic 
+  - SelfHashMap is a hash map data structure supports dicHashMap
+  - dicHashMap is a dic
   - We want to make DicHashMap clear and simple, so we split the
   - implementation into two parts
 - Advantages of unit testing:

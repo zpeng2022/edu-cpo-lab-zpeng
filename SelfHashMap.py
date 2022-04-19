@@ -1,6 +1,7 @@
 import random
 import math
 
+
 class LinkedNode:
     def __init__(self, key, val, predecessor=None, successor=None):
         self.predecessor, self.successor = predecessor, successor
