@@ -9,36 +9,36 @@ from DicHashMap import Dic
 class TestDicHashMap(unittest.TestCase):
 
     @given(st.integers(), st.integers())
-    def test_add(self, a, b):
+    def test1_add(self, a, b):
         dic = Dic()
         dic.add(a, b)
         self.assertEqual(dic.to_list(), [(a, b)])
 
     @given(st.binary(), st.binary())
-    def test_add(self, a, b):
+    def test2_add(self, a, b):
         dic = Dic()
         dic.add(a, b)
         self.assertEqual(dic.to_list(), [(a, b)])
 
     @given(st.text(), st.text())
-    def test_add(self, a, b):
+    def test3_add(self, a, b):
         dic = Dic()
         dic.add(a, b)
         self.assertEqual(dic.to_list(), [(a, b)])
 
     @given(st.none(), st.none())
-    def test_add(self, a, b):
+    def test4_add(self, a, b):
         dic = Dic()
         dic.add(a, b)
         self.assertEqual(dic.to_list(), [])
 
     @given(st.floats(), st.floats())
-    def test_add(self, a, b):
+    def test5_add(self, a, b):
         dic = Dic()
         dic.add(a, b)
         self.assertEqual(dic.to_list(), [(a, b)])
 
-    def test_add(self):
+    def test6_add(self):
         dic = Dic()
         a = None
         b = 1.2
@@ -53,7 +53,7 @@ class TestDicHashMap(unittest.TestCase):
         self.assertEqual(dic.to_list(), [(a, b)])
 
     @given(st.floats(), st.floats())
-    def test_get(self, a, b):
+    def test1_get(self, a, b):
         dic = Dic()
         dic.set(a, b)
         if math.isnan(b):
@@ -62,7 +62,7 @@ class TestDicHashMap(unittest.TestCase):
             self.assertEqual(dic.get(a), b)
 
     @given(st.integers(), st.integers())
-    def test_get(self, a, b):
+    def test2_get(self, a, b):
         dic = Dic()
         dic.set(a, b)
         if math.isnan(b):
@@ -90,7 +90,7 @@ class TestDicHashMap(unittest.TestCase):
         self.assertEqual(dic.get(g), h)
 
     @given(st.floats(), st.floats(), st.floats())
-    def test_change(self, a, b, c):
+    def test1_change(self, a, b, c):
         dic = Dic()
         dic.set(a, b)
         dic.change(a, c)
@@ -100,7 +100,7 @@ class TestDicHashMap(unittest.TestCase):
             self.assertEqual(dic.get(a), c)
 
     @given(st.integers(), st.integers(), st.integers())
-    def test_change(self, a, b, c):
+    def test2_change(self, a, b, c):
         dic = Dic()
         dic.set(a, b)
         dic.change(a, c)
@@ -109,7 +109,7 @@ class TestDicHashMap(unittest.TestCase):
         else:
             self.assertEqual(dic.get(a), c)
 
-    def test_change(self):
+    def test3_change(self):
         dic = Dic()
         dic.set(1, 2)
         dic.change(1, 3)
@@ -122,7 +122,7 @@ class TestDicHashMap(unittest.TestCase):
         dic.set(a, b)
         self.assertEqual(dic.remove(a), True)
 
-    def test_size(self):
+    def test1_size(self):
         self.assertEqual(Dic().size(), 0)
         dic = Dic()
         dic.set(1, 2)
@@ -134,34 +134,34 @@ class TestDicHashMap(unittest.TestCase):
         self.assertEqual(dic.size(), 3)
 
     @given(st.dictionaries(st.integers(), st.integers()))
-    def test_size(self, a):
+    def test2_size(self, a):
         c = list(a.items())
         dic = Dic()
         dic.from_list(c)
         self.assertEqual(dic.size(), len(a))
 
     @given(st.dictionaries(st.floats(), st.floats()))
-    def test_size(self, a):
+    def test3_size(self, a):
         c = list(a.items())
         dic = Dic()
         dic.from_list(c)
         self.assertEqual(dic.size(), len(a))
 
     @given(st.dictionaries(st.text(), st.text()))
-    def test_size(self, a):
+    def test4_size(self, a):
         c = list(a.items())
         dic = Dic()
         dic.from_list(c)
         self.assertEqual(dic.size(), len(a))
 
     @given(st.integers(), st.integers())
-    def test_is_member_for_key(self, a, b):
+    def test1_is_member_for_key(self, a, b):
         dic = Dic()
         dic.set(a, b)
         self.assertEqual(dic.is_member_for_key(a), True)
         self.assertEqual(dic.is_member_for_key(b), False)
 
-    def test_is_member_for_key(self):
+    def test2_is_member_for_key(self):
         dic = Dic()
         dic.set(1, 3)
         self.assertEqual(dic.is_member_for_key(1), True)
