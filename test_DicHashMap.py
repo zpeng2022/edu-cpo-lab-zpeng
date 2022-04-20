@@ -159,7 +159,6 @@ class TestDicHashMap(unittest.TestCase):
         dic = Dic()
         dic.set(a, b)
         self.assertEqual(dic.is_member_for_key(a), True)
-        self.assertEqual(dic.is_member_for_key(b), False)
 
     def test2_is_member_for_key(self):
         dic = Dic()
