@@ -164,14 +164,34 @@ class TestDicHashMap(unittest.TestCase):
         dic = Dic()
         self.assertEqual(dic.reverse(), True)
 
-    def test_from_list(self):
+    @given(st.dictionaries(st.integers(), st.integers()))
+    def test1_from_list(self, a):
+        c = list(a.items())
+        dic = Dic()
+        dic.from_list(c)
+        result = dic.to_list()
+        result.sort()
+        c.sort()
+        self.assertEqual(result, c)
+
+    def test2_from_list(self):
         dic = Dic()
         dic.from_list([(1, 2), (1, 2), (1, 2), (1, 3)])
         self.assertEqual(dic.to_list(), [(1, 3)])
         dic.from_list([(1, 2), (1, 2), (1, 3), (1, 2)])
         self.assertEqual(dic.to_list(), [(1, 2)])
 
-    def test_to_list(self):
+    @given(st.dictionaries(st.integers(), st.integers()))
+    def test1_to_list(self, a):
+        c = list(a.items())
+        dic = Dic()
+        dic.from_list(c)
+        result = dic.to_list()
+        result.sort()
+        c.sort()
+        self.assertEqual(result, c)
+
+    def test2_to_list(self):
         dic = Dic()
         self.assertEqual(dic.to_list(), [])
         dic.set(1, 2)
@@ -180,25 +200,81 @@ class TestDicHashMap(unittest.TestCase):
         dic.set(3, 4)
         self.assertEqual(dic.to_list(), [(1, 2), (2, 3), (3, 4)])
 
-    def test_filter_the_value(self):
+    @given(st.dictionaries(st.integers(), st.integers()))
+    def test1_filter_the_value(self, a):
+        c = list(a.items())
+        print(c)
+        dic = Dic()
+        dic.from_list(c)
+        e = []
+        for index, value in c:
+            if index % 2 == 0:
+                e.append((index, value))
+        dic.filter_the_value(lambda x: x % 2 == 0)
+        result = dic.to_list()
+	result.sort()
+	e.sort()
+        self.assertEqual(result, e)
+    
+    def test2_filter_the_value(self):
         dic = Dic()
         dic.from_list([(1, 2), (3, 4), (5, 6), (7, 7)])
         dic.filter_the_value(lambda x: x % 2 == 0)
         self.assertEqual(dic.to_list(), [(1, 2), (3, 4), (5, 6)])
+    
+    @given(st.dictionaries(st.integers(), st.integers()))
+    def test1_map(self, a):
+        dic = Dic()
+        c = list(a.items())
+        dic.from_list(c)
+        dic.map(lambda x: x + 1)
+        e = []
+        for index, value in c:
+            e.append((index, value + 1))
+        result = dic.to_list()
+        result.sort()
+        e.sort()
+        self.assertEqual(result, e)
 
-    def test_map(self):
+    def test2_map(self):
         dic = Dic()
         dic.from_list([(1, 2), (3, 4), (5, 6), (7, 7)])
         dic.map(lambda x: x + 1)
         self.assertEqual(dic.to_list(), [(1, 3), (3, 5), (5, 7), (7, 8)])
 
-    def test_reduce(self):
+    @given(st.dictionaries(st.integers(), st.integers()))
+    def test1_reduce(self, a):
+        dic = Dic()
+        c = list(a.items())
+        dic.from_list(c)
+        dic.reduce(lambda x, state: x + 1 + 2 * state, 0)
+        result = dic.to_list()
+        e = []
+        for index, value in c:
+            e.append((index, value + 1 + 2 * 0))
+        result.sort()
+        e.sort()
+        self.assertEqual(result, e)
+
+    def test2_reduce(self):
         dic = Dic()
         dic.from_list([(1, 2), (3, 4), (5, 6), (7, 7)])
         dic.reduce(lambda x, state: x + 1 + 2 * state, 0)
         self.assertEqual(dic.to_list(), [(1, 3), (3, 5), (5, 7), (7, 8)])
 
-    def test_iterator(self):
+    @given(st.dictionaries(st.integers(), st.integers()))
+    def test1_iterator(self, a):
+        dic = Dic()
+        c = list(a.items())
+        dic.from_list(c)
+        tem = []
+        for e in dic:
+            tem.append(e)
+        tem.sort()
+        c.sort()
+        self.assertEqual(c, tem)
+
+    def test2_iterator(self):
         x = [(1, 2), (3, 4), (5, 6), (7, 7)]
         dic = Dic()
         dic.from_list(x)
