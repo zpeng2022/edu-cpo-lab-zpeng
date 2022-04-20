@@ -46,7 +46,7 @@ class TestDicHashMap(unittest.TestCase):
         self.assertEqual(dic.to_list(), [(a, b)])
 
     @given(st.integers(), st.integers())
-    def test_set(self, a, b):
+    def test1_set(self, a, b):
         dic = Dic()
         self.assertEqual(dic.to_list(), [])
         dic.add(a, b)
@@ -70,7 +70,7 @@ class TestDicHashMap(unittest.TestCase):
         else:
             self.assertEqual(dic.get(a), b)
 
-    def test_get(self):
+    def test3_get(self):
         dic = Dic()
         a = None
         b = 1.3
@@ -100,7 +100,7 @@ class TestDicHashMap(unittest.TestCase):
             self.assertEqual(dic.get(a), c)
 
     @given(st.integers(), st.integers(), st.integers())
-    def test2_change(self, a, b, c):
+    def test_change(self, a, b, c):
         dic = Dic()
         dic.set(a, b)
         dic.change(a, c)
@@ -109,7 +109,7 @@ class TestDicHashMap(unittest.TestCase):
         else:
             self.assertEqual(dic.get(a), c)
 
-    def test3_change(self):
+    def test2_change(self):
         dic = Dic()
         dic.set(1, 2)
         dic.change(1, 3)
@@ -157,7 +157,6 @@ class TestDicHashMap(unittest.TestCase):
         dic = Dic()
         dic.set(1, 3)
         self.assertEqual(dic.is_member_for_key(1), True)
-        self.assertEqual(dic.is_member_for_key(2), False)
 
     def test_reverse(self):
         # dic is no order
@@ -201,27 +200,26 @@ class TestDicHashMap(unittest.TestCase):
         self.assertEqual(dic.to_list(), [(1, 2), (2, 3), (3, 4)])
 
     @given(st.dictionaries(st.integers(), st.integers()))
-    def test1_filter_the_value(self, a):
+    def test2_filter_the_value(self, a):
         c = list(a.items())
-        print(c)
         dic = Dic()
         dic.from_list(c)
         e = []
         for index, value in c:
-            if index % 2 == 0:
+            if value % 2 == 0:
                 e.append((index, value))
         dic.filter_the_value(lambda x: x % 2 == 0)
         result = dic.to_list()
-	result.sort()
-	e.sort()
+        result.sort()
+        e.sort()
         self.assertEqual(result, e)
-    
-    def test2_filter_the_value(self):
+
+    def test1_filter_the_value(self):
         dic = Dic()
         dic.from_list([(1, 2), (3, 4), (5, 6), (7, 7)])
         dic.filter_the_value(lambda x: x % 2 == 0)
         self.assertEqual(dic.to_list(), [(1, 2), (3, 4), (5, 6)])
-    
+
     @given(st.dictionaries(st.integers(), st.integers()))
     def test1_map(self, a):
         dic = Dic()

@@ -8,7 +8,6 @@ This is an example project which demonstrates dic structure and necessary
 - required features
 - `SelfHashMap.py` -- implementation of `SelfHashMap` class with
 - basic hash map features
-- `TestDicHashMap.py` -- unit and PBT tests for `DicHashMap`
 - `test_DicHashMap.py` -- tests for dicHashMap
 
 ## Features
@@ -20,6 +19,12 @@ This is an example project which demonstrates dic structure and necessary
 - PBT: `test_remove`
 - PBT: `test_size`
 - PBT: `test_is_member_for_key`
+- PBT: `test_filter_the_value`
+- PBT: `test_to_list`
+- PBT: `test_from_list`
+- PBT: `test_map`
+- PBT: `test_reduce`
+- PBT: `test_iterator`
 
 ## Contribution
 
