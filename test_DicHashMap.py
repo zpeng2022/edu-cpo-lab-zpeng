@@ -30,7 +30,7 @@ class TestDicHashMap(unittest.TestCase):
     def test4_add(self, a, b):
         dic = Dic()
         dic.add(a, b)
-        self.assertEqual(dic.to_list(), [])
+        self.assertEqual(dic.to_list(), [(a, b)])
 
     @given(st.floats(), st.floats())
     def test5_add(self, a, b):
