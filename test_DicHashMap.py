@@ -140,13 +140,6 @@ class TestDicHashMap(unittest.TestCase):
         dic.from_list(c)
         self.assertEqual(dic.size(), len(a))
 
-    @given(st.dictionaries(st.floats(), st.floats()))
-    def test3_size(self, a):
-        c = list(a.items())
-        dic = Dic()
-        dic.from_list(c)
-        self.assertEqual(dic.size(), len(a))
-
     @given(st.dictionaries(st.text(), st.text()))
     def test4_size(self, a):
         c = list(a.items())
