@@ -9,36 +9,36 @@ from DicHashMap import Dic
 class TestDicHashMap(unittest.TestCase):
 
     @given(st.integers(), st.integers())
-    def test1_add(self, a, b):
+    def test_add_integers(self, a, b):
         dic = Dic()
         dic.add(a, b)
         self.assertEqual(dic.to_list(), [(a, b)])
 
     @given(st.binary(), st.binary())
-    def test2_add(self, a, b):
+    def test_add_binary(self, a, b):
         dic = Dic()
         dic.add(a, b)
         self.assertEqual(dic.to_list(), [(a, b)])
 
     @given(st.text(), st.text())
-    def test3_add(self, a, b):
+    def test_add_text(self, a, b):
         dic = Dic()
         dic.add(a, b)
         self.assertEqual(dic.to_list(), [(a, b)])
 
     @given(st.none(), st.none())
-    def test4_add(self, a, b):
+    def test_add_none(self, a, b):
         dic = Dic()
         dic.add(a, b)
         self.assertEqual(dic.to_list(), [(a, b)])
 
     @given(st.floats(), st.floats())
-    def test5_add(self, a, b):
+    def test_add_floats(self, a, b):
         dic = Dic()
         dic.add(a, b)
         self.assertEqual(dic.to_list(), [(a, b)])
 
-    def test6_add(self):
+    def test_add_unitest(self):
         dic = Dic()
         a = None
         b = 1.2
@@ -46,14 +46,14 @@ class TestDicHashMap(unittest.TestCase):
         self.assertEqual(dic.to_list(), [(a, b)])
 
     @given(st.integers(), st.integers())
-    def test1_set(self, a, b):
+    def test1_set_integers(self, a, b):
         dic = Dic()
         self.assertEqual(dic.to_list(), [])
         dic.add(a, b)
         self.assertEqual(dic.to_list(), [(a, b)])
 
     @given(st.floats(), st.floats())
-    def test1_get(self, a, b):
+    def test_get_floats(self, a, b):
         dic = Dic()
         dic.set(a, b)
         if math.isnan(b):
@@ -62,7 +62,7 @@ class TestDicHashMap(unittest.TestCase):
             self.assertEqual(dic.get(a), b)
 
     @given(st.integers(), st.integers())
-    def test2_get(self, a, b):
+    def test_get_integers(self, a, b):
         dic = Dic()
         dic.set(a, b)
         if math.isnan(b):
@@ -70,7 +70,7 @@ class TestDicHashMap(unittest.TestCase):
         else:
             self.assertEqual(dic.get(a), b)
 
-    def test3_get(self):
+    def test_get_unitest(self):
         dic = Dic()
         a = None
         b = 1.3
@@ -90,7 +90,7 @@ class TestDicHashMap(unittest.TestCase):
         self.assertEqual(dic.get(g), h)
 
     @given(st.floats(), st.floats(), st.floats())
-    def test1_change(self, a, b, c):
+    def test1_change_floats(self, a, b, c):
         dic = Dic()
         dic.set(a, b)
         dic.change(a, c)
@@ -100,7 +100,7 @@ class TestDicHashMap(unittest.TestCase):
             self.assertEqual(dic.get(a), c)
 
     @given(st.integers(), st.integers(), st.integers())
-    def test_change(self, a, b, c):
+    def test_change_integers(self, a, b, c):
         dic = Dic()
         dic.set(a, b)
         dic.change(a, c)
@@ -109,20 +109,20 @@ class TestDicHashMap(unittest.TestCase):
         else:
             self.assertEqual(dic.get(a), c)
 
-    def test2_change(self):
+    def test_change_unitest(self):
         dic = Dic()
         dic.set(1, 2)
         dic.change(1, 3)
         self.assertEqual(dic.get(1), 3)
 
     @given(st.integers(), st.integers())
-    def test_remove(self, a, b):
+    def test_remove_integers(self, a, b):
         dic = Dic()
         self.assertEqual(dic.remove(a), False)
         dic.set(a, b)
         self.assertEqual(dic.remove(a), True)
 
-    def test1_size(self):
+    def test_size_unitest(self):
         self.assertEqual(Dic().size(), 0)
         dic = Dic()
         dic.set(1, 2)
@@ -134,37 +134,37 @@ class TestDicHashMap(unittest.TestCase):
         self.assertEqual(dic.size(), 3)
 
     @given(st.dictionaries(st.integers(), st.integers()))
-    def test2_size(self, a):
+    def test_size_integers(self, a):
         c = list(a.items())
         dic = Dic()
         dic.from_list(c)
         self.assertEqual(dic.size(), len(a))
 
     @given(st.dictionaries(st.text(), st.text()))
-    def test4_size(self, a):
+    def test_size_text(self, a):
         c = list(a.items())
         dic = Dic()
         dic.from_list(c)
         self.assertEqual(dic.size(), len(a))
 
     @given(st.integers(), st.integers())
-    def test1_is_member_for_key(self, a, b):
+    def test_is_member_for_key_integers(self, a, b):
         dic = Dic()
         dic.set(a, b)
         self.assertEqual(dic.is_member_for_key(a), True)
 
-    def test2_is_member_for_key(self):
+    def test_is_member_for_key_unitest(self):
         dic = Dic()
         dic.set(1, 3)
         self.assertEqual(dic.is_member_for_key(1), True)
 
-    def test_reverse(self):
+    def test_reverse_unitest(self):
         # dic is no order
         dic = Dic()
         self.assertEqual(dic.reverse(), True)
 
     @given(st.dictionaries(st.integers(), st.integers()))
-    def test1_from_list(self, a):
+    def test_from_list_integers(self, a):
         c = list(a.items())
         dic = Dic()
         dic.from_list(c)
@@ -173,7 +173,7 @@ class TestDicHashMap(unittest.TestCase):
         c.sort()
         self.assertEqual(result, c)
 
-    def test2_from_list(self):
+    def test_from_list_unitest(self):
         dic = Dic()
         dic.from_list([(1, 2), (1, 2), (1, 2), (1, 3)])
         self.assertEqual(dic.to_list(), [(1, 3)])
@@ -181,7 +181,7 @@ class TestDicHashMap(unittest.TestCase):
         self.assertEqual(dic.to_list(), [(1, 2)])
 
     @given(st.dictionaries(st.integers(), st.integers()))
-    def test1_to_list(self, a):
+    def test_to_list_integers(self, a):
         c = list(a.items())
         dic = Dic()
         dic.from_list(c)
@@ -190,7 +190,7 @@ class TestDicHashMap(unittest.TestCase):
         c.sort()
         self.assertEqual(result, c)
 
-    def test2_to_list(self):
+    def test_to_list_unitest(self):
         dic = Dic()
         self.assertEqual(dic.to_list(), [])
         dic.set(1, 2)
@@ -200,7 +200,7 @@ class TestDicHashMap(unittest.TestCase):
         self.assertEqual(dic.to_list(), [(1, 2), (2, 3), (3, 4)])
 
     @given(st.dictionaries(st.integers(), st.integers()))
-    def test2_filter_the_value(self, a):
+    def test_filter_the_value_integers(self, a):
         c = list(a.items())
         dic = Dic()
         dic.from_list(c)
@@ -214,14 +214,14 @@ class TestDicHashMap(unittest.TestCase):
         e.sort()
         self.assertEqual(result, e)
 
-    def test1_filter_the_value(self):
+    def test_filter_the_value_unitest(self):
         dic = Dic()
         dic.from_list([(1, 2), (3, 4), (5, 6), (7, 7)])
         dic.filter_the_value(lambda x: x % 2 == 0)
         self.assertEqual(dic.to_list(), [(1, 2), (3, 4), (5, 6)])
 
     @given(st.dictionaries(st.integers(), st.integers()))
-    def test1_map(self, a):
+    def test_map_integers(self, a):
         dic = Dic()
         c = list(a.items())
         dic.from_list(c)
@@ -234,14 +234,14 @@ class TestDicHashMap(unittest.TestCase):
         e.sort()
         self.assertEqual(result, e)
 
-    def test2_map(self):
+    def test_map_unitest(self):
         dic = Dic()
         dic.from_list([(1, 2), (3, 4), (5, 6), (7, 7)])
         dic.map(lambda x: x + 1)
         self.assertEqual(dic.to_list(), [(1, 3), (3, 5), (5, 7), (7, 8)])
 
     @given(st.dictionaries(st.integers(), st.integers()))
-    def test1_reduce(self, a):
+    def test_reduce_integers(self, a):
         dic = Dic()
         c = list(a.items())
         dic.from_list(c)
@@ -254,14 +254,14 @@ class TestDicHashMap(unittest.TestCase):
         e.sort()
         self.assertEqual(result, e)
 
-    def test2_reduce(self):
+    def test_reduce_unitest(self):
         dic = Dic()
         dic.from_list([(1, 2), (3, 4), (5, 6), (7, 7)])
         dic.reduce(lambda x, state: x + 1 + 2 * state, 0)
         self.assertEqual(dic.to_list(), [(1, 3), (3, 5), (5, 7), (7, 8)])
 
     @given(st.dictionaries(st.integers(), st.integers()))
-    def test1_iterator(self, a):
+    def test_iterator_integers(self, a):
         dic = Dic()
         c = list(a.items())
         dic.from_list(c)
@@ -272,7 +272,7 @@ class TestDicHashMap(unittest.TestCase):
         c.sort()
         self.assertEqual(c, tem)
 
-    def test2_iterator(self):
+    def test_iterator_unitest(self):
         x = [(1, 2), (3, 4), (5, 6), (7, 7)]
         dic = Dic()
         dic.from_list(x)
@@ -281,7 +281,7 @@ class TestDicHashMap(unittest.TestCase):
             tem.append(e)
         self.assertEqual(x, tem)
 
-    def test_concat(self):
+    def test_concat_unitest(self):
         x = [(1, 2), (3, 4), (5, 6), (7, 7)]
         tem_dic = Dic()
         tem_dic.from_list(x)
