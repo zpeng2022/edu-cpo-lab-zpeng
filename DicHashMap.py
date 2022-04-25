@@ -1,4 +1,4 @@
-from SelfHashMap import SelfHashMap 
+from SelfHashMap import SelfHashMap
 
 
 # Add a new element
