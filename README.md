@@ -9,6 +9,8 @@ This is an example project which demonstrates dic structure and necessary
 - `SelfHashMap.py` -- implementation of `SelfHashMap` class with
 - basic hash map features
 - `test_DicHashMap.py` -- tests for dicHashMap
+- `localcheck.bash` -- check codestyle and typical python error
+- on a local machine
 
 ## Features
 
