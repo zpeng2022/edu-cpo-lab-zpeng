@@ -283,7 +283,8 @@ class TestDicHashMap(unittest.TestCase):
         for i in range(siz):
             self.assertEqual(next_element(i1), next_element(i2))
 
-    @given(st.dictionaries(st.integers(), st.integers()), st.dictionaries(st.integers(), st.integers()))
+    @given(st.dictionaries(st.integers(), st.integers()),\
+            st.dictionaries(st.integers(), st.integers()))
     def test_concat_integers(self, a, b):
         int_list1 = list(a.items())
         int_list2 = list(b.items())
@@ -299,7 +300,8 @@ class TestDicHashMap(unittest.TestCase):
         int_list3.sort()
         self.assertEqual(result, int_list3)
 
-    @given(st.dictionaries(st.text(), st.text()), st.dictionaries(st.text(), st.text()))
+    @given(st.dictionaries(st.text(), st.text()),\
+            st.dictionaries(st.text(), st.text()))
     def test_concat_text(self, a, b):
         int_list1 = list(a.items())
         int_list2 = list(b.items())
