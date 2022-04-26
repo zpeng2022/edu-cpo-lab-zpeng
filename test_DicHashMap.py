@@ -4,6 +4,7 @@ from hypothesis import given
 import hypothesis.strategies as st
 
 from DicHashMap import Dic
+from DicHashMap import iterator_element, next_element
 
 
 class TestDicHashMap(unittest.TestCase):
