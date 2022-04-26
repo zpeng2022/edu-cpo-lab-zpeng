@@ -317,6 +317,23 @@ class TestDicHashMap(unittest.TestCase):
         int_list3.sort()
         self.assertEqual(result, int_list3)
 
+    @given(st.dictionaries(st.integers(), st.integers()),
+           st.dictionaries(st.integers(), st.integers()))
+    def test_concat_integers(self, a, b):
+        int_list1 = list(a.items())
+        int_list2 = list(b.items())
+        dic = Dic()
+        dic1 = Dic()
+        dic1.from_list(int_list1)
+        dic2 = Dic()
+        dic2.from_list(int_list2)
+        result = dic.concat(dic1, dic2).to_list()
+        result.sort()
+        a.update(b)
+        int_list3 = list(a.items())
+        int_list3.sort()
+        self.assertEqual(result, int_list3)
+
     def test_concat_unitest(self):
         x = [(1, 2), (3, 4), (5, 6), (7, 7)]
         tem_dic = Dic()
