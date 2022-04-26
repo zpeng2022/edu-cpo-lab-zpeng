@@ -25,6 +25,7 @@ This is an example project which demonstrates dic structure and necessary
 - PBT: `test_map`
 - PBT: `test_reduce`
 - PBT: `test_iterator`
+- PBT: `test_concat`
 
 ## Contribution
 
@@ -33,7 +34,12 @@ This is an example project which demonstrates dic structure and necessary
 
 ## Changelog
 
-- 19.03.2022 - 8
+- 26.04.2022 - 9
+  - add PBT test for monoid properties
+  - fix the bug of iterator
+  - updated the check.yml template
+  - improved the readability of tests
+- 19.04.2022 - 8
   - add tests for different type(None, str, float, text)
   - add more PBT tests
   - explain the difference between `SelfHashMap` and `DicHashMap` in Design note

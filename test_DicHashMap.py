@@ -260,26 +260,59 @@ class TestDicHashMap(unittest.TestCase):
         dic.reduce(lambda x, state: x + 1 + 2 * state, 0)
         self.assertEqual(dic.to_list(), [(1, 3), (3, 5), (5, 7), (7, 8)])
 
-    @given(st.dictionaries(st.integers(), st.integers()))
-    def test_iterator_integers(self, a):
-        dic = Dic()
-        c = list(a.items())
-        dic.from_list(c)
-        tem = []
-        for e in dic:
-            tem.append(e)
-        tem.sort()
-        c.sort()
-        self.assertEqual(c, tem)
-
-    def test_iterator_unitest(self):
+    def test_iterator_unittest(self):
         x = [(1, 2), (3, 4), (5, 6), (7, 7)]
         dic = Dic()
         dic.from_list(x)
+        i1 = iterator_element(dic)
+        siz = dic.size()
         tem = []
-        for e in dic:
-            tem.append(e)
+        for i in range(siz):
+            tem.append(next_element(i1))
         self.assertEqual(x, tem)
+
+    @given(st.dictionaries(st.integers(), st.integers()))
+    def test_iterator_integers(self, a):
+        dic_c = Dic()
+        c = list(a.items())
+        dic_c.from_list(c)
+        siz = dic_c.size()
+        i1 = iterator_element(dic_c)
+        i2 = iterator_element(dic_c)
+        for i in range(siz):
+            self.assertEqual(next_element(i1), next_element(i2))
+
+    @given(st.dictionaries(st.integers(), st.integers()), st.dictionaries(st.integers(), st.integers()))
+    def test_concat_integers(self, a, b):
+        int_list1 = list(a.items())
+        int_list2 = list(b.items())
+        dic = Dic()
+        dic1 = Dic()
+        dic1.from_list(int_list1)
+        dic2 = Dic()
+        dic2.from_list(int_list2)
+        result = dic.concat(dic1, dic2).to_list()
+        result.sort()
+        a.update(b)
+        int_list3 = list(a.items())
+        int_list3.sort()
+        self.assertEqual(result, int_list3)
+
+    @given(st.dictionaries(st.text(), st.text()), st.dictionaries(st.text(), st.text()))
+    def test_concat_text(self, a, b):
+        int_list1 = list(a.items())
+        int_list2 = list(b.items())
+        dic = Dic()
+        dic1 = Dic()
+        dic1.from_list(int_list1)
+        dic2 = Dic()
+        dic2.from_list(int_list2)
+        result = dic.concat(dic1, dic2).to_list()
+        result.sort()
+        a.update(b)
+        int_list3 = list(a.items())
+        int_list3.sort()
+        self.assertEqual(result, int_list3)
 
     def test_concat_unitest(self):
         x = [(1, 2), (3, 4), (5, 6), (7, 7)]

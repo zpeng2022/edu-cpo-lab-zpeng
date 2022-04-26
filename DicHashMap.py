@@ -130,20 +130,6 @@ class Dic(object):
             tem_cur = f(cur[1], state)
             self.__hashmap.put_in_hashmap(cur[0], tem_cur)
 
-    # iteration
-    def __iter__(self):
-        self.__lst = self.to_list()
-        self.__pos = 0
-        self.__len = len(self.__lst)
-        return self
-
-    def __next__(self):
-        if self.__pos >= self.__len:
-            raise StopIteration
-        tmp = self.__lst[self.__pos]
-        self.__pos += 1
-        return tmp
-
     # monoid
     # empty
     def empty(self):
@@ -175,3 +161,23 @@ class Dic(object):
             tem_dic.set(a[0], a[1])
             tem_dic.set(b[0], b[1])
             return tem_dic
+
+
+# iteration
+def iterator_element(a):
+    if isinstance(a, Dic) is False:
+        return None
+    tem = Dic()
+    tem.from_list(a.to_list())
+    tem.__lst = tem.to_list()
+    tem.__pos = 0
+    tem.__len = tem.size()
+    return tem
+
+
+def next_element(tem):
+    if tem.__pos >= tem.__len:
+        return 0
+    tmp = tem.__lst[tem.__pos]
+    tem.__pos += 1
+    return tmp
