@@ -133,34 +133,45 @@ class Dic(object):
     # monoid
     # empty
     def empty(self):
+        self.__hashmap = SelfHashMap()
         return None
 
     # concat
     def concat(self, a, b):
+        result = None
         if b is None:
             if a is None:
-                return Dic()
+                result = Dic()
+                # return Dic()
             elif isinstance(a, Dic) is True:
-                return a
+                result = a
+                # return a
             elif isinstance(a, Dic) is False:
                 tem_dic = Dic()
                 tem_dic.set(a[0], a[1])
-                return tem_dic
+                result = tem_dic
+                # return tem_dic
         elif a is None:
             if isinstance(b, Dic) is True:
-                return b
+                result = b
+                # return b
             elif isinstance(b, Dic) is False:
                 tem_dic = Dic()
                 tem_dic.set(b[0], b[1])
-                return tem_dic
+                result = tem_dic
+                # return tem_dic
         elif isinstance(a, Dic) and isinstance(b, Dic):
             a.from_list(b.to_list())
-            return a
+            result = a
+            # return a
         elif isinstance(a, Dic) is False and isinstance(b, Dic) is False:
             tem_dic = Dic()
             tem_dic.set(a[0], a[1])
             tem_dic.set(b[0], b[1])
-            return tem_dic
+            result = tem_dic
+            # return tem_dic
+        self = result
+        return self
 
 
 # iteration

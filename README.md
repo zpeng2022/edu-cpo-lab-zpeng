@@ -36,6 +36,8 @@ This is an example project which demonstrates dic structure and necessary
 
 ## Changelog
 
+- 05.05.2022 - 10
+  - update the mutable concat and empty method.
 - 26.04.2022 - 9
   - add PBT test for monoid properties
   - fix the bug of iterator
