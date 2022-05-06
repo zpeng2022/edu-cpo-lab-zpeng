@@ -3,15 +3,18 @@ import math
 
 class LinkedNode:
     def __init__(self, key, val, predecessor=None, successor=None):
+        """initialize the LinkedNode"""
         self.predecessor, self.successor = predecessor, successor
         self.key, self.val = key, val
 
-    def __repr__(self):
+    def __str__(self):
+        """this function is used to print"""
         return "['key: " + self.key + " val: " + self.val + "]"
 
 
 class LinkedList:
     def __init__(self):
+        """initialize the LinkedList"""
         self.head = LinkedNode(None, 'This_is_a_marker_for_header')
         self.tail = LinkedNode(None, 'This_is_a_marker_for_tail')
         self.head.successor = self.tail
@@ -19,9 +22,11 @@ class LinkedList:
         self.size = 0
 
     def __str__(self):
+        """this function is used to print or log"""
         return " : ".join(map(str, self.to_list()))
 
     def delete_node(self, node):
+        """delete a node in LinkedList"""
         # delete a node, if and only if this node is not head or tail
         # O(1)
         if node == self.tail or node == self.head:
@@ -33,6 +38,7 @@ class LinkedList:
         return True
 
     def append_node(self, node):
+        """append a node to the LinkedList"""
         # O(1)
         predecessor = self.tail.predecessor
         node.predecessor, node.successor = predecessor, predecessor.successor
@@ -40,6 +46,7 @@ class LinkedList:
         self.size += 1
 
     def get_a_list(self):
+        """return elements to the built-in list"""
         ret = []
         cur_node = self.head.successor
         # return a list
@@ -50,6 +57,9 @@ class LinkedList:
         return ret
 
     def get_a_list_without_prev_successor(self):
+        """return elements to the built-in list
+           and the information of elements only include
+           key and value"""
         ret = []
         cur_node = self.head.successor
         # return a list
@@ -60,6 +70,7 @@ class LinkedList:
         return ret
 
     def get_node_by_key(self, key):
+        """return the node with some key"""
         # find the node with some key in the list
         # O(n) or O(self.size)
         c = (type(key) == int or type(key) == float) and math.isnan(key)
@@ -76,6 +87,7 @@ class LinkedList:
 
 class SelfHashMap:
     def __init__(self, capacity=64, load_factor=5):
+        """initialize the SelfHashMap"""
         # the capacity is the power of 2
         # load_factor is used to balance the hashmap
         self.capacity = capacity
@@ -86,12 +98,15 @@ class SelfHashMap:
         self.array_node = [LinkedList() for _ in range(capacity)]
 
     def get_hash_key(self, key):
+        """the hash function of our HashMap"""
+        """we the hash result with key and the capacity"""
         # use the built-in hash function to calculate the hash value of a key
         # hash(key) % capacity is same as hash(key) & (self.capacity - 1)
         # when capacity is the pow of 2.
         return hash(key) & (self.capacity - 1)
 
     def put_in_hashmap(self, key, val):
+        """put an element [key, val] into the hashmap"""
         hash_key = self.get_hash_key(key)
         linked_list = self.array_node[hash_key]
         if linked_list.size >= self.capacity * self.load_factor:
@@ -108,6 +123,7 @@ class SelfHashMap:
             linked_list.append_node(node)
 
     def get_from_hashmap(self, key):
+        """get an element's value from hashmap"""
         hash_key = self.get_hash_key(key)
         linked_list = self.array_node[hash_key]
         node = linked_list.get_node_by_key(key)
@@ -117,12 +133,16 @@ class SelfHashMap:
             return None
 
     def get_from_hashmap_with_node(self, key):
+        """get an node from hashmap"""
         hash_key = self.get_hash_key(key)
         linked_list = self.array_node[hash_key]
         node = linked_list.get_node_by_key(key)
         return node
 
     def get_to_list(self):
+        """put elements into a built-in list"""
+        """and the information of elements only
+           includes [key, val]"""
         head = []
         for i in range(self.capacity):
             linked_list = self.array_node[i]
@@ -133,6 +153,7 @@ class SelfHashMap:
         return head
 
     def reset_a_bucket(self):
+        """reset a bucket of the hashmap"""
         # when the nodes in a bucket is to big
         # we need to resize buckets
         # and change the position of bucket
@@ -153,6 +174,7 @@ class SelfHashMap:
         self.array_node = resize_headers
 
     def delete_node_in_hashmap(self, key):
+        """delet a node in the hashmap"""
         node = self.get_from_hashmap_with_node(key)
         if node is None:
             return False
