@@ -36,6 +36,8 @@ This is an example project which demonstrates dic structure and necessary
 
 ## Changelog
 
+- 06.05.2022 - 11
+  - add docstrings for all functions 
 - 05.05.2022 - 10
   - update the mutable concat and empty method.
 - 26.04.2022 - 9
